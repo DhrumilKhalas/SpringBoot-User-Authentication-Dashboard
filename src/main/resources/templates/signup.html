@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Favicon for the website -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <!-- Google Fonts for page styling -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet" />
+    <!-- Custom stylesheet for styling the page -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <!-- Form for signing up, bound to the user object -->
+        <form action="#" th:action="@{/signup}" th:object="${user}" method="post" class="signup-form">
+
+            <p class="signup-title">Sign up to create your account</p>
+
+            <!-- Username input field with error display -->
+            <div class="signup-input-container">
+                <label for="username-s">Username:</label>
+                <input type="text" id="username-s" th:field="*{username}" class="signup-input" />
+                <span class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+            </div>
+
+            <!-- Full Name input field with error display -->
+            <div class="signup-input-container signup-input-container-fullname">
+                <label for="fullName-s">Full Name:</label>
+                <input type="text" id="fullName-s" th:field="*{fullName}" class="signup-input" />
+                <span class="error-message" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}"></span>
+            </div>
+
+            <!-- Email input field with error display -->
+            <div class="signup-input-container signup-input-container-email">
+                <label for="email-s">Email:</label>
+                <input type="email" id="email-s" th:field="*{email}" class="signup-input" />
+                <span class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
+
+            <!-- Password input field with error display -->
+            <div class="signup-input-container signup-input-container-password">
+                <label for="password-s">Password:</label>
+                <input type="password" id="password-s" th:field="*{password}" class="signup-input" />
+                <span class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
+
+            <!-- Submit button to create a new account -->
+            <button type="submit" class="signup-btn">Sign Up</button>
+
+            <!-- Link to login page for users who already have an account -->
+            <p class="signup-login-link">Already have an account? <a href="/login">Log in here</a></p>
+
+            <!-- Link to home page -->
+            <p class="home-link"><a href="/">Home</a></p>
+        </form>
+        
+    </div>
+</body>
+
+</html>

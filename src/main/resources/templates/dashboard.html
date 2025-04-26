@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <!-- Link to Google Fonts for styling -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet" />
+    <!-- Link to custom stylesheet for page styling -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css" />
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+        
+        <!-- Logout button with a link back to the homepage -->
+        <button th:onclick="window.location.href='/'" class="logout-btn">Logout</button>
+        <h2>Welcome to the Dashboard</h2>
+        <div class="dashboard-container-inner">
+            <!-- Heading for the item section -->
+            <p class="dashboard-item-title">Here are some items you might like:</p>
+            <div class="dashboard-items-list">
+                <!-- Loop to display each item dynamically using Thymeleaf -->
+                <div th:each="item : ${items}" class="dashboard-item">
+                    <h3 th:text="${item.name}"></h3>
+                    <p th:text="${item.shortDescription}" class="dashboard-item-description"></p>
+                    <!-- Display item image -->
+                    <img th:src="${item.image}" alt="Item Image" width="100" class="dashboard-item-image" />
+                    <!-- Display price of the item -->
+                    <p class="dashboard-item-price">
+                        <strong>Price: </strong><span>$</span><span th:text="${item.price}"></span>
+                    </p>
+                    <!-- Link to open item details modal, passing item data as attributes -->
+                    <a class="dashboard-item-details" href="javascript:void(0);" th:data-name="${item.name}"
+                        th:data-description="${item.longDescription != null ? item.longDescription : 'No detailed description available'}"
+                        th:data-url="${item.detailsUrl}" th:data-image="${item.image}" th:data-price="${item.price}"
+                        th:data-category="${item.category != null ? item.category : 'N/A'}"
+                        th:data-stock="${item.stockStatus != null ? item.stockStatus : 'Stock status unavailable'}"
+                        th:data-rating="${item.rating != null ? item.rating : 0}" onclick="showItemDetails(this)">View
+                        Details</a>
+                </div>
+            </div>
+
+            <!-- Modal for displaying item details -->
+            <div id="itemDetailsModal">
+                <div class="modal-content">
+                    <h3 id="itemName"></h3>
+                    <p id="itemDescription"></p>
+                    <img id="itemImage" src="" alt="Item Image" class="dashboard-details-item-image" />
+                    <p><strong>Price: </strong><span id="itemPrice">$ </span></p>
+                    <p><strong>Category: </strong><span id="itemCategory"></span></p>
+                    <p><strong>Stock: </strong><span id="itemStock"></span></p>
+                    <p><strong>Rating: </strong><span id="itemRating"></span> stars</p>
+                    <br /><br />
+                    <!-- Button to close the modal -->
+                    <div class="dashboard-details-close-btn-div"><button onclick="closeModal()"
+                            class="dashboard-details-close-btn">Close</button></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Link to external JavaScript file for functionality -->
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

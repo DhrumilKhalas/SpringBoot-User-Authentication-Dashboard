@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Favicon for the website -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <!-- Google Fonts for page styling -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+        rel="stylesheet" />
+    <!-- Custom stylesheet for styling the page -->
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+
+<body>
+
+    <div class="index-container">
+        <h1>Welcome to the Home Page</h1>
+        <p>Please Log in or Sign up.</p>
+        <div class="index-btn-div">
+            <!-- Buttons that navigate to login and signup pages -->
+            <button onclick="location.href='/login'" class="btn-index">Login</button>
+            <button onclick="location.href='/signup'" class="btn-index">Sign Up</button>
+        </div>
+    </div>
+    
+</body>
+</html>
